@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-
-import { UserModule } from './api/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Connection } from 'typeorm';
+
+import { UserModule } from './api/user/user.module';
+import { JobModule } from './api/job/job.module';
 
 import { TypeOrmConfigService } from './db/typeOrmConfigService';
 
@@ -13,6 +14,7 @@ import { TypeOrmConfigService } from './db/typeOrmConfigService';
       useClass: TypeOrmConfigService,
     }),
     UserModule,
+    JobModule,
   ],
 })
 export class AppModule {
