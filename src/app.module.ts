@@ -4,19 +4,13 @@ import { UserModule } from './api/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Connection } from 'typeorm';
-import { User } from './api/user/user.entity';
+
+import { TypeOrmConfigService } from './db/typeOrmConfigService';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'mypass',
-      database: 'test',
-      entities: [User],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
     }),
     UserModule,
   ],
