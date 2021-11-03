@@ -1,25 +1,29 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
-import { JobProducerController } from './producer/job.producer.controller';
-import { JobProducerService } from './producer/job.producer.service';
-import { JobConsumer } from './consumer/job.consumer';
-import { JobListener } from './listener/job.listener';
-import { JobResumerController } from './resumer/job.resumer.controller';
-import JobResumerService from './resumer/job.resumer.service';
+
+import * as redisConfig from '../../config/redis.config.json';
+
+import { JobProducerModule } from './producer/job.producer.module';
+import { JobListenerModule } from './listener/job.listener.module';
+import { JobConsumerModule } from './consumer/job.consumer.module';
+import { JobResumerModule } from './resumer/job.resumer.module';
 
 @Module({
   imports: [
     BullModule.forRoot({
       redis: {
-        host: 'localhost',
-        port: 6379,
+        host: redisConfig.host,
+        port: redisConfig.port,
       },
     }),
     BullModule.registerQueue({
       name: 'new-job',
     }),
+    JobListenerModule,
+    JobConsumerModule,
+    JobResumerModule,
+    JobProducerModule,
   ],
-  controllers: [JobProducerController, JobResumerController],
-  providers: [JobProducerService, JobConsumer, JobListener, JobResumerService],
+  exports: [BullModule],
 })
 export class JobModule {}

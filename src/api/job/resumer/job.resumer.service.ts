@@ -4,7 +4,7 @@ import { Queue } from 'bull';
 
 @Injectable()
 export default class JobResumerService {
-  constructor(@InjectQueue('new-job') private newJobQueue: Queue) {}
+  constructor(@InjectQueue('new-job') private readonly newJobQueue: Queue) {}
 
   async pauseQueue() {
     await this.newJobQueue.pause();

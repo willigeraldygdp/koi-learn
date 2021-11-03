@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
-import * as config from '../config/typeOrmConfig.json';
+import * as config from '../config/typeorm.config.json';
 
 import { User } from '../api/user/user.entity';
 

@@ -6,7 +6,7 @@ import { Connection } from 'typeorm';
 import { UserModule } from './api/user/user.module';
 import { JobModule } from './api/job/job.module';
 
-import { TypeOrmConfigService } from './db/typeOrmConfigService';
+import { TypeOrmConfigService } from './db/typeormConfig.service';
 
 @Module({
   imports: [

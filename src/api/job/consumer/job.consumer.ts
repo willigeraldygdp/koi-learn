@@ -10,15 +10,7 @@ export class JobConsumer {
       progress += 10;
       await job.progress(progress);
     }
-    await new Promise((resolve) => setTimeout(resolve, 10000));
-    //console.log(job.data);
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return job.data;
   }
-
-  // @OnQueueActive()
-  // onActive(job: Job) {
-  //   console.log(
-  //     `Processing job ${job.id} of type ${job.name} with data ${job.data}...`,
-  //   );
-  // }
 }
