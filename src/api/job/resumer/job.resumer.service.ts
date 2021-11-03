@@ -8,11 +8,13 @@ export class JobResumerService {
 
   async pauseQueue() {
     await this.newJobQueue.pause();
+    console.log('Queue paused');
     return 'Queue paused';
   }
 
   async resumeQueue() {
     await this.newJobQueue.resume();
+    console.log('Queue resumed');
     return 'Queue resume';
   }
 }
