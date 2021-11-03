@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Queue } from 'bull';
 
 @Injectable()
-export default class JobResumerService {
+export class JobResumerService {
   constructor(@InjectQueue('new-job') private readonly newJobQueue: Queue) {}
 
   async pauseQueue() {

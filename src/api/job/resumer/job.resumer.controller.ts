@@ -1,5 +1,5 @@
 import { Controller, Post } from '@nestjs/common';
-import JobResumerService from './job.resumer.service';
+import { JobResumerService } from './job.resumer.service';
 
 @Controller('job')
 export class JobResumerController {
