@@ -3,10 +3,13 @@ import { BullModule } from '@nestjs/bull';
 
 import * as redisConfig from '../../config/redis.config.json';
 
-import { JobProducerModule } from './producer/job.producer.module';
-import { JobListenerModule } from './listener/job.listener.module';
-import { JobConsumerModule } from './consumer/job.consumer.module';
-import { JobResumerModule } from './resumer/job.resumer.module';
+import { JobProducerController } from './producer/job.producer.controller';
+import { JobResumerController } from './resumer/job.resumer.controller';
+
+import { JobProducerService } from './producer/job.producer.service';
+import { JobResumerService } from './resumer/job.resumer.service';
+import { JobConsumer } from './consumer/job.consumer';
+import { JobListener } from './listener/job.listener';
 
 @Module({
   imports: [
@@ -19,11 +22,9 @@ import { JobResumerModule } from './resumer/job.resumer.module';
     BullModule.registerQueue({
       name: 'new-job',
     }),
-    JobListenerModule,
-    JobConsumerModule,
-    JobResumerModule,
-    JobProducerModule,
   ],
+  controllers: [JobProducerController, JobResumerController],
+  providers: [JobProducerService, JobResumerService, JobConsumer, JobListener],
   exports: [BullModule],
 })
 export class JobModule {}
