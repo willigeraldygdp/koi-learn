@@ -10,7 +10,7 @@ export class JobConsumer {
       progress += 10;
       await job.progress(progress);
     }
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 6000));
     return job.data;
   }
 }
